@@ -10,7 +10,7 @@
     "lint-staged": "eslint --fix"
   },
   "dependencies": {
-    "@strapi/design-system": "1.2.8",
+    "@strapi/design-system": "1.6.6",
     "@strapi/icons": "1.2.8",
     "gray-matter": "^4.0.3",
     "next": "^13.0.3",
