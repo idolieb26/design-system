@@ -10,7 +10,7 @@
     "@storybook/builder-webpack5": "^6.5.15",
     "@storybook/manager-webpack5": "^6.5.15",
     "@storybook/react": "^6.5.15",
-    "@strapi/design-system": "^1.6.5",
+    "@strapi/design-system": "git+https://github.com/idolieb26/design-system.git#v1.6.6",
     "@strapi/icons": "^1.6.5",
     "qs": "^6.11.0",
     "react": "17",
