@@ -3731,6 +3731,10 @@
     regenerator-runtime "^0.13.7"
     resolve-from "^5.0.0"
 
+"@strapi/design-system@git+https://github.com/idolieb26/design-system.git#v1.6.6":
+  version "1.0.0"
+  resolved "git+https://github.com/idolieb26/design-system.git#7e9f5aa2e5e85e87f3292ef88577028edaf67649"
+
 "@strapi/eslint-config@^0.1.2":
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/@strapi/eslint-config/-/eslint-config-0.1.2.tgz#e8327169eccce78b5f9e1589cb243c0f84343caf"
