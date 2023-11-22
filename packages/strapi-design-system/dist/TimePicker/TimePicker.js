@@ -1,87 +1,88 @@
-import { jsx as l } from "react/jsx-runtime";
-import { useRef as x, useState as v } from "react";
-import { Cross as R, Clock as T } from "@strapi/icons";
-import g from "styled-components";
+import { jsx as m } from "react/jsx-runtime";
+import { useRef as v, useState as R } from "react";
+import { Cross as T, Clock as w } from "@strapi/icons";
+import I from "styled-components";
 import "../Field/Field.js";
 import "../Field/FieldLabel.js";
 import "../Field/FieldInput.js";
 import "../Field/FieldContext.js";
 import "../Typography/Typography.js";
-import { FieldAction as w } from "../Field/FieldAction.js";
-import { Flex as y } from "../Flex/Flex.js";
-import { useId as A } from "../hooks/useId.js";
+import { FieldAction as y } from "../Field/FieldAction.js";
+import { Flex as A } from "../Flex/Flex.js";
+import { useId as H } from "../hooks/useId.js";
 import S from "./InputMask/index.js";
 import { TextInput as V } from "../TextInput/TextInput.js";
-const F = (r, f = 1) => {
-  const n = [];
+const F = (r, d = 1) => {
+  const o = [];
   let e = 0;
   for (let t = 0; t < 24; t++)
     for (e = 0; e < 60; )
-      n.push(`${t < 10 ? `0${t}` : t}:${e < 10 ? `0${e}` : e}`), e += f;
-  const [i, a] = r?.split(":") ?? [];
-  let o = n.reduce((t, m) => {
-    const [s] = m.split(":");
-    return Math.abs(s - i) < Math.abs(t - i) ? s : t;
-  }, n[0].split(":")[0]);
-  const h = n.reduce((t, m) => {
-    const s = m.split(":")[1];
-    return Math.abs(s - a) < Math.abs(t - a) ? s : t;
-  }, n[0].split(":")[1]);
-  let u = "am";
-  if (parseInt(o) > 11) {
-    u = "pm";
-    const t = parseInt(o) - 12;
-    t < 10 ? o = `0${t}` : o = t.toString(), console.log("default hours: ", o, t);
+      o.push(`${t < 10 ? `0${t}` : t}:${e < 10 ? `0${e}` : e}`), e += d;
+  const [n, u] = r?.split(":") ?? [];
+  let i = o.reduce((t, a) => {
+    const [s] = a.split(":");
+    return Math.abs(s - n) < Math.abs(t - n) ? s : t;
+  }, o[0].split(":")[0]);
+  const $ = o.reduce((t, a) => {
+    const s = a.split(":")[1];
+    return Math.abs(s - u) < Math.abs(t - u) ? s : t;
+  }, o[0].split(":")[1]), l = parseInt(i);
+  let c = "am";
+  if (l > 11) {
+    c = l === 24 ? "am" : "pm";
+    const t = l !== 12 ? l - 12 : 12;
+    t < 10 ? i = `0${t}` : i = t.toString();
   }
-  return `${o}:${h}${u}`;
-}, X = ({
+  return `${i}:${$}${c}`;
+}, Y = ({
   id: r,
-  value: f,
-  step: b = 15,
-  clearLabel: n,
+  value: d,
+  step: C = 15,
+  clearLabel: o,
   disabled: e = !1,
-  onClear: i,
-  onChange: a,
-  label: o = "",
-  ...h
+  onClear: n,
+  onChange: u,
+  label: i = "",
+  ...$
 }) => {
-  const u = A(r), t = x(null), [m, s] = v(F(f)), I = () => {
-    i && (s("00:00am"), i(), t.current.inputWrapperRef.current.focus());
+  const l = H(r), c = v(null), [t, a] = R(F(d)), s = () => {
+    n && (a("00:00am"), n(), c.current.inputWrapperRef.current.focus());
   };
-  return l(S, {
+  return m(S, {
     mask: [/[0-2]/, /[0-3]/, ":", /[0-5]/, /[0-9]/, /(a|p)/, /[m]/],
-    value: m,
-    onChange: (C) => {
-      const k = /^([0-1]?[0-9]|2[0-3]):[0-5][0-9](a|p)m$/, c = C.target.value;
-      if (a && k.test(c)) {
-        const M = !c.includes("am"), d = c.replace("am", "").replace("pm", ""), $ = parseInt(d.split(":")[1]);
-        let p = d.split(":")[0];
-        M && (p = parseInt(p) + 12), console.log("~~~~~~~~: ", `${p}:${$}`), a(`${p}:${$}`);
+    value: t,
+    onChange: (k) => {
+      const M = /^([0-1]?[0-9]|2[0-3]):[0-5][0-9](a|p)m$/, p = k.target.value;
+      if (u && M.test(p)) {
+        const b = !p.includes("am"), g = p.replace("am", "").replace("pm", ""), x = parseInt(g.split(":")[1]);
+        let f = g.split(":")[0];
+        const h = parseInt(f);
+        (b && h !== 12 || !b && h === 12) && (f = h + 12), u(`${f}:${x}`);
       }
-      s(c);
+      a(p);
     },
     disabled: e,
-    children: l(V, {
-      id: u,
-      ref: t,
-      label: o,
-      startAction: l(P, {
-        children: l(T, {})
+    children: m(V, {
+      id: l,
+      ref: c,
+      label: i,
+      startAction: m(P, {
+        children: m(w, {})
       }),
-      endAction: i ? l(w, {
+      endAction: n ? m(y, {
         label: "close",
-        onClick: I,
+        onClick: s,
         "aria-disabled": e || void 0,
-        children: l(W, {})
+        children: m(W, {})
       }) : void 0,
       "aria-autocomplete": "none",
       "aria-label": "close",
       type: "text",
       disabled: e,
-      ...h
+      ...$
     })
   });
-}, P = g(y)`
+}, P = I(A)`
   & > svg {
     height: 1rem;
     width: 1rem;
@@ -92,7 +93,7 @@ const F = (r, f = 1) => {
   theme: r
 }) => r.colors.neutral500};
   }
-`, W = g(R)`
+`, W = I(T)`
   height: ${11 / 16}rem;
   width: ${11 / 16}rem;
 
@@ -103,5 +104,5 @@ const F = (r, f = 1) => {
   }
 `;
 export {
-  X as TimePicker
+  Y as TimePicker
 };
